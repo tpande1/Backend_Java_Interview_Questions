@@ -1,0 +1,103 @@
+Microservices
+
+Breaking the monolithic architecture into manageable independent services.
+Microservices are a way of breaking large software projects into loosely coupled modules, which communicate with each other through simple Application Programming Interfaces (APIs).
+Advantages of microservices:
+•	Improved fault isolation: Larger applications can remain mostly unaffected by the failure of a single module.
+•	Eliminate vendor or technology lock-in: Microservices provide the flexibility to try out a new technology stack on an individual service as needed. There won’t be as many dependency concerns and rolling back changes becomes much easier. With less code in play, there is more flexibility.
+•	Ease of understanding: With added simplicity, developers can better understand the functionality of a service.
+•	Smaller and faster deployments: Smaller codebases and scope = quicker deployments, which also allow you to start to explore the benefits of Continuous Deployment.
+•	Scalability: Since your services are separate, you can more easily scale the most needed ones at the appropriate times, as opposed to the whole application. When done correctly, this can impact cost savings.
+Disadvantages of microservices:
+•	Communication between services is complex: Since everything is now an independent service, you have to carefully handle requests traveling between your modules. In one such scenario, developers may be forced to write extra code to avoid disruption. Over time, complications will arise when remote calls experience latency.
+•	More services equals more resources: Multiple databases and transaction management can be painful.
+•	Global testing is difficult: Testing a microservices-based application can be cumbersome. In a monolithic approach, we would just need to launch our WAR on an application server and ensure its connectivity with the underlying database. With microservices, each dependent service needs to be confirmed before testing can occur.
+•	Debugging problems can be harder: Each service has its own set of logs to go through. Log, logs, and more logs.
+•	Deployment challengers: Devops becoming complex. Artifacts needs to be properly created and scheduled. Different deployment strategy considering CI/CD.
+•	From a team perspective, documentation increases in confluence to write about all the MS.
+ 
+Question 2: Consider there are 10 MS in your architecture, how will you secure the communication between M1 and M2, etc.
+Answer:
+Using OAuth2.0 between Service to Service Communication. We have used ApiGee which acts as a reverse proxy to call Keycloak Token Endpoint using client credentials which generates time bound Access and Id Token which can be used to secure the services.
+
+Question 3: MS Design Patterns:
+Answer: 
+SAGA Design Pattern which consists of 2 patterns.
+a.	Event Based/Choreograph Design
+b.	Orchestration Design
+
+Question 4: Consider each MS has an individual Data Source, I have a requirement to join data from 2 Data Sources, how can I implement this?
+Answer:
+Use CQRS Design Pattern. Onse Service can use Command side (Create, Update, Delete)
+Other Service can be Query part can use materialized view.
+
+Question 5: What is difference between @Component and @Bean
+Answer: 
+1.	@Component auto detects and configures the beans using classpath scanning whereas @Bean explicitly declares a single bean, rather than letting Spring do it automatically.
+2.	@Component does not decouple the declaration of the bean from the class definition where as @Bean decouples the declaration of the bean from the class definition.
+3.	@Component is a class level annotation whereas @Bean is a method level annotation and name of the method serves as the bean name.
+4.	@Component need not to be used with the @Configuration annotation where as @Bean annotation has to be used within the class which is annotated with @Configuration.
+5.	We cannot create a bean of a class using @Component, if the class is outside spring container whereas we can create a bean of a class using @Bean even if the class is present outside the spring container.
+6.	@Component has different specializations like @Controller, @Repository and @Service whereas @Bean has no specializations.
+
+Question6: What do you know about Spring Transaction Management and how to implement it?
+Answer:
+
+Programmatic Transaction Management
+Declarative Transaction Management 
+
+Uses @Transaction Annotation, Transaction Template. Different Elements of @Transaction Annotation provides.
+
+Rollback for a particular Exception, do not rollback for other transaction. Importance of having transaction @Service layer instead of DAO.
+
+Question 7: Have you worked on Future and Completable Future? If yes what are the differences.
+
+Answer: Callable Interface returns result of completance.
+
+Question 8: CRUD Repository vs JPA Repository
+
+Answer: 
+
+Question 9:  Write an API to observe a list of students(name, age) do Post, Put and Sort the list by name, and again sort it by age before sending back the result.
+
+Answer: 
+Response Entity, What is Serializable, difference 1L vs generated, Will you face any issues if all classes have 1L, Why Response Entity, Comparator vs Comparable, Collections.sort()
+Multiple Comparator, Method reference, Java8 Lambda, Put vs Patch.
+
+Question 10: Containerization Experience? What are Docker Swarms?
+Answer:  Docker Swarms enable you to cluster multiple Docker containers.
+
+Question 11: You have a system and a request comes to your system and goes to a third party. The 3rd party is again a REST call and response comes from this 3rd party. You need to send the response to the UI Application. How will you do bean mapping between your system and 3rd party system?
+
+Answer: You have to create and object and use set on this object. Do not use multiple .set() on your Request and on 3rd party. Effectively and Efficiently code can be written in one line using Use Java Bean Mapping : BeanUtils, Dozer and MapStruct.
+
+Question 12: Non Singleton to Singleton Bean? What if we define prototype inside a singleton?
+Answer: Prototype is going to behave like a singleton bean. In prototype declaration Every Request is going to create a new Bean whereas Singleton is going to only create a single bean and use that to its complete lifecycle.
+
+Question 13: Difference between SLF4j vs Log4J.
+Answer: Slf4J acts as a façade between different logging frameworks. For ex. Java Util, Logback, Log4J these are different logging f/w . Slf4J offers a generic API which makes these logging frameworks independent of the actual implementation. It helps in loosen the dependency b/w these log f/ws.
+
+Question 14: Design Patterns - tell any 4 and explain with your experience.
+Answer: Check Internet Video and prepare.
+
+Question 15: Spring Dependency Injection
+Answer:  
+
+Question 16: Spring Boot Profiles
+Answer: Multiple env. How you can configure Spring Boot to take multiple prop files depending on multiple env. Same code base these props can be picked up using Spring Profile.
+
+Question 17: Functional Interfaces
+Answer: Predicate, ByConsumer, BySupplier
+
+Question 18:  what function inside predicate have to made use of other than isEqual()
+Answer:          .negate() 
+
+Question 19:  Difference between .map() vs .flatmap()
+Answer:  Example code done
+
+Question 20: TDD? 
+
+Question 21: What is Git and Github?
+Answer: Git is a version control system. This lets developers revert back to the previous code in terms of developing a feature and you want to revert to the old code.
+
+Github is a repository which hosts the code. It acts like a social network where you can look out for multiple repositories.
