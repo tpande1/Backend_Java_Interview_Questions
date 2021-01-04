@@ -87,7 +87,7 @@ Question 16: Spring Boot Profiles
 Answer: Multiple env. How you can configure Spring Boot to take multiple prop files depending on multiple env. Same code base these props can be picked up using Spring Profile.
 
 Question 17: Functional Interfaces
-Answer: Predicate, ByConsumer, BySupplier
+Answer: Predicate, BiPredicate, Consumer, BiConsumer, Supplier, BiSupplier
 
 Question 18:  what function inside predicate have to made use of other than isEqual()
 Answer:          .negate() 
